@@ -11,10 +11,14 @@ const EventDetails = async ({ params }) => {
   const { id } = await params;
 
   const fetchEvent = async (id) => {
-    const res = await fetch(`http://localhost:4000/events/${id}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/events/${id}`
+    );
 
     if (!res.ok) {
-      throw new Error("Failed to fetch event");
+      const errorDetails = await res.text();
+      console.error("Error fetching event:", errorDetails);
+      throw new Error(`Failed to fetch event: ${errorDetails}`);
     }
 
     return res.json();
@@ -27,9 +31,11 @@ const EventDetails = async ({ params }) => {
       <div className="container mx-auto">
         <div className="w-full max-w-150 xl:max-w-none mx-auto">
           <div className="flex flex-col gap-8 xl:gap-24 xl:flex-row pt-28 pb-12 sm:py-0 xl:mb-24">
-            <div className="relative w-full h-80 xl:max-w-167.5 xl:h-125 rounded-2xl overflow-hidden mb-12
-            xl:mb-0">
-              <Image 
+            <div
+              className="relative w-full h-80 xl:max-w-167.5 xl:h-125 rounded-2xl overflow-hidden mb-12
+            xl:mb-0"
+            >
+              <Image
                 src={event.img_lg}
                 alt="event"
                 fill
