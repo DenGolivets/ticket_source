@@ -3,7 +3,6 @@
 import { TicketContext } from "@/contexts/TicketContext";
 import React, { useContext, useEffect } from "react";
 import { PiChairFill } from "react-icons/pi";
-import { BiChevronDown } from "react-icons/bi";
 
 const CustomSelect = ({ event }) => {
   const { initializeEvent, seat, showMenu, setShowMenu, handleSeat } =
