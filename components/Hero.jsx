@@ -1,6 +1,5 @@
 import React from "react";
 import Searchbar from "./Searchbar/Searchbar";
-import { EventContext } from "@/contexts/EventContext";
 
 const Hero = () => {
   return (
